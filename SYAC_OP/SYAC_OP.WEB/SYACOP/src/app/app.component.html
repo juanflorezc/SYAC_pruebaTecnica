@@ -325,7 +325,7 @@
       <tr *ngFor="let pedido of pedidos;index as i;">
         <td>{{i+1}}</td>
         <td>{{pedido.cliente.nombres}}</td>
-        <td>{{pedido.direccion}}</td>
+        <td>{{pedido.direccionEntrega}}</td>
         <td>{{pedido.fechaCreacion}}</td>
         <td>{{pedido.estado.nombre}}</td>
         <td><table>

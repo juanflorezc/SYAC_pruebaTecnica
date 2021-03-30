@@ -25,16 +25,22 @@ namespace SYAC_OP.Controllers
         }
 
         [HttpGet]
-        public async Task<List<OrdenPedido>> GetClient()
+        public async Task<List<OrdenPedido>> GetOrden()
         {
             return await OrdenPedidoServices.getOrdenes();
         }
 
         
         [HttpPut]
-        public async Task<List<OrdenPedido>> SetClient(OrdenPedido prmOrdenPedido)
+        public async Task<List<OrdenPedido>> SetOrden(OrdenPedido prmOrdenPedido)
         {
             return await OrdenPedidoServices.setOrdenes(prmOrdenPedido);
+        }
+
+        [HttpPost]
+        public async Task<List<OrdenPedido>> CreatePedido(OrdenPedido prmOrdenPedido)
+        {
+            return await OrdenPedidoServices.CreatePedido(prmOrdenPedido);
         }
 
     }

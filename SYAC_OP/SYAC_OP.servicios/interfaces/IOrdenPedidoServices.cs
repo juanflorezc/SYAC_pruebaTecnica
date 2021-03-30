@@ -10,5 +10,6 @@ namespace SYAC_OP.servicios
     {
         Task<List<OrdenPedido>> getOrdenes();
         Task<List<OrdenPedido>> setOrdenes(OrdenPedido prmOrdenPedido);
+        Task<List<OrdenPedido>> CreatePedido(OrdenPedido prmOrdenPedido);
     }
 }

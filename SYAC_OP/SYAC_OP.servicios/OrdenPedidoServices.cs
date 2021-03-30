@@ -16,7 +16,15 @@ namespace SYAC_OP.servicios
             _context = context;
         }
 
-       
+        public Task<List<OrdenPedido>> CreatePedido(OrdenPedido prmOrdenPedido)
+        {
+            prmOrdenPedido.EstadoId = 3;
+            prmOrdenPedido.FechaCreacion = DateTime.Now;
+            prmOrdenPedido.CreadoPor = "admin";
+            _context.OrdenPedidos.Add(prmOrdenPedido);
+            _context.SaveChanges();
+            return this.getOrdenes();
+        }
 
         public async Task<List<OrdenPedido>> getOrdenes()
         {
