@@ -20,15 +20,29 @@ namespace SYAC_OP.servicios
 
         public async Task<List<OrdenPedido>> getOrdenes()
         {
-            var ordenpedidoslist= _context.OrdenPedidos.Include(x=>x.OrdenPedidoDetalles).ThenInclude(x=>x.Producto).Include(x=>x.Cliente).ToList();
+            var ordenpedidoslist= _context.OrdenPedidos.Include(x=>x.OrdenPedidoDetalles).ThenInclude(x=>x.Producto).
+                Include(x=>x.Cliente).Include(x=>x.Estado).ToList();
             foreach (var ordenpedido in ordenpedidoslist)
             {
+                ordenpedido.Cliente.OrdenPedidos = null;
+                ordenpedido.Estado.OrdenPedidoEstados = null;
+                ordenpedido.Estado.OrdenPedidoPrioridads = null;
                 foreach (var detalles in ordenpedido.OrdenPedidoDetalles)
                 {
                     detalles.OrdenPedido = null;//eliminar redundancia
+                    detalles.Producto.OrdenPedidoDetalles = null;
                 }
             }
             return ordenpedidoslist;
+        }
+
+        public Task<List<OrdenPedido>> setOrdenes(OrdenPedido prmOrdenPedido)
+        {
+            var orden = _context.OrdenPedidos.Find(prmOrdenPedido.OrdenPedidoId);
+            orden.EstadoId = prmOrdenPedido.EstadoId;
+            _context.OrdenPedidos.Update(orden);
+            _context.SaveChanges();
+            return this.getOrdenes();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace SYAC_OP.servicios
     public interface IOrdenPedidoServices
     {
         Task<List<OrdenPedido>> getOrdenes();
+        Task<List<OrdenPedido>> setOrdenes(OrdenPedido prmOrdenPedido);
     }
 }

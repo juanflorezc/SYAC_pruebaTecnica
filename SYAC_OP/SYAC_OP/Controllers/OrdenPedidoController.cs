@@ -29,7 +29,13 @@ namespace SYAC_OP.Controllers
         {
             return await OrdenPedidoServices.getOrdenes();
         }
+
         
+        [HttpPut]
+        public async Task<List<OrdenPedido>> SetClient(OrdenPedido prmOrdenPedido)
+        {
+            return await OrdenPedidoServices.setOrdenes(prmOrdenPedido);
+        }
 
     }
 }
