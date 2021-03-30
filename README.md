@@ -22,5 +22,5 @@ Para frontend Angular
 • ejecute en una terminal ubicado previamente en la ruta SYAC_OP\SYAC_OP.WEB\SYACOP el comando "ng serve"
 
 Para windows
-• Abra el proyecto SYAC_OP\WinFormsOP y ejecutelo
+• Abra el proyecto WinFormsOP, modifique la linea 21 del archivo WinFormOP\Form1.cs ajustando el endpoint de la primera sección y ejecutelo.
 
