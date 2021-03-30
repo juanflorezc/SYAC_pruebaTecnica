@@ -7,6 +7,11 @@ namespace SYAC_OP.model.Models
 {
     public partial class OrdenPedido
     {
+        public OrdenPedido()
+        {
+            OrdenPedidoDetalles = new HashSet<OrdenPedidoDetalle>();
+        }
+
         public int OrdenPedidoId { get; set; }
         public int ClienteId { get; set; }
         public int EstadoId { get; set; }
@@ -20,6 +25,6 @@ namespace SYAC_OP.model.Models
         public virtual Cliente Cliente { get; set; }
         public virtual Listum Estado { get; set; }
         public virtual Listum Prioridad { get; set; }
-        public virtual OrdenPedidoDetalle OrdenPedidoDetalle { get; set; }
+        public virtual ICollection<OrdenPedidoDetalle> OrdenPedidoDetalles { get; set; }
     }
 }

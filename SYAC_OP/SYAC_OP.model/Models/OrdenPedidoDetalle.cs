@@ -14,7 +14,7 @@ namespace SYAC_OP.model.Models
         public string CreadoPor { get; set; }
         public DateTime FechaCreacion { get; set; }
 
-        public virtual Producto OrdenPedidoDetalle1 { get; set; }
-        public virtual OrdenPedido OrdenPedidoDetalleNavigation { get; set; }
+        public virtual OrdenPedido OrdenPedido { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

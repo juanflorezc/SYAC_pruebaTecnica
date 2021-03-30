@@ -23,14 +23,7 @@ namespace SYAC_OP.model.Models
         public virtual DbSet<OrdenPedidoDetalle> OrdenPedidoDetalles { get; set; }
         public virtual DbSet<Producto> Productos { get; set; }
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=W10TESTDEV06;Database=syac_op;User ID=sa;Password=admin;MultipleActiveResultSets=False;Connection Timeout=30;");
-            }
-        }*/
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -157,9 +150,7 @@ namespace SYAC_OP.model.Models
             {
                 entity.ToTable("OrdenPedidoDetalle");
 
-                entity.Property(e => e.OrdenPedidoDetalleId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ordenPedidoDetalleId");
+                entity.Property(e => e.OrdenPedidoDetalleId).HasColumnName("ordenPedidoDetalleId");
 
                 entity.Property(e => e.Cantidad).HasColumnName("cantidad");
 
@@ -177,15 +168,15 @@ namespace SYAC_OP.model.Models
 
                 entity.Property(e => e.ProductoId).HasColumnName("productoId");
 
-                entity.HasOne(d => d.OrdenPedidoDetalleNavigation)
-                    .WithOne(p => p.OrdenPedidoDetalle)
-                    .HasForeignKey<OrdenPedidoDetalle>(d => d.OrdenPedidoDetalleId)
+                entity.HasOne(d => d.OrdenPedido)
+                    .WithMany(p => p.OrdenPedidoDetalles)
+                    .HasForeignKey(d => d.OrdenPedidoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrdenPedidoDetalle_OrdenPedido");
 
-                entity.HasOne(d => d.OrdenPedidoDetalle1)
-                    .WithOne(p => p.OrdenPedidoDetalle)
-                    .HasForeignKey<OrdenPedidoDetalle>(d => d.OrdenPedidoDetalleId)
+                entity.HasOne(d => d.Producto)
+                    .WithMany(p => p.OrdenPedidoDetalles)
+                    .HasForeignKey(d => d.ProductoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrdenPedidoDetalle_Producto");
             });

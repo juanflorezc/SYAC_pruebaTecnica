@@ -13,29 +13,23 @@ namespace SYAC_OP.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ClienteController : ControllerBase
+    public class OrdenPedidoController : ControllerBase
     {
-        public readonly IClienteServices clienteServices;
+        public readonly IOrdenPedidoServices OrdenPedidoServices;
         private readonly ILogger _logger;
-        public ClienteController(IClienteServices prmClienteServices, ILogger<ClienteController> logger,
+        public OrdenPedidoController(IOrdenPedidoServices prmOrdenPedidoServices, ILogger<OrdenPedidoController> logger,
             IOptions<AppSettings> settings)
         {
-            clienteServices = prmClienteServices;
+            OrdenPedidoServices = prmOrdenPedidoServices;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<List<Cliente>> GetClient()
+        public async Task<List<OrdenPedido>> GetClient()
         {
-            return await clienteServices.getClients();
+            return await OrdenPedidoServices.getOrdenes();
         }
-
-        [HttpGet]
-        [Route("geName")]
-        public async Task<List<string>> GetClientName()
-        {
-            return await clienteServices.GetClientName();
-        }
+        
 
     }
 }

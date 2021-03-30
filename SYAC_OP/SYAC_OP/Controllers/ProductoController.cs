@@ -13,28 +13,28 @@ namespace SYAC_OP.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ClienteController : ControllerBase
+    public class ProductoController : ControllerBase
     {
-        public readonly IClienteServices clienteServices;
+        public readonly IProductoServices ProductoServices;
         private readonly ILogger _logger;
-        public ClienteController(IClienteServices prmClienteServices, ILogger<ClienteController> logger,
+        public ProductoController(IProductoServices prmProductoServices, ILogger<ProductoController> logger,
             IOptions<AppSettings> settings)
         {
-            clienteServices = prmClienteServices;
+            ProductoServices = prmProductoServices;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<List<Cliente>> GetClient()
+        public async Task<List<Producto>> GetClient()
         {
-            return await clienteServices.getClients();
+            return await ProductoServices.getProducto();
         }
 
         [HttpGet]
         [Route("geName")]
         public async Task<List<string>> GetClientName()
         {
-            return await clienteServices.GetClientName();
+            return await ProductoServices.GetProductName();
         }
 
     }

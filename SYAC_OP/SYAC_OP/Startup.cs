@@ -93,6 +93,8 @@ namespace SYAC_OP
               => options.UseSqlServer(Configuration.GetConnectionString("OPDatabase")));
 
             services.AddTransient<IClienteServices, ClienteServices>();
+            services.AddTransient<IProductoServices, ProductoServices>();
+            services.AddTransient<IOrdenPedidoServices, OrdenPedidoServices>();
 
 
         }

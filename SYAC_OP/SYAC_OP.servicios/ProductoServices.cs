@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace SYAC_OP.servicios
 {
-    public class ClienteServices : IClienteServices
+    public class ProductoServices : IProductoServices
     {
         private readonly syac_opContext _context;
 
-        public ClienteServices(syac_opContext context)
+        public ProductoServices(syac_opContext context)
         {
             _context = context;
         }
 
-        public async Task<List<string>> GetClientName()
+        public async Task<List<string>> GetProductName()
         {
             return _context.Clientes.Select(x => x.Nombres).ToList();
         }
 
-        public async Task<List<Cliente>> getClients()
+        public async Task<List<Producto>> getProducto()
         {
-            return _context.Clientes.ToList();
+            return _context.Productos.ToList();
         }
     }
 }

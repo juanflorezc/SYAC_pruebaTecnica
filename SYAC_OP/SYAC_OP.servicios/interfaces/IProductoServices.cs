@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SYAC_OP.servicios
 {
-    public interface IClienteServices
+    public interface IProductoServices
     {
-        Task<List<Cliente>> getClients();
-        Task<List<string>> GetClientName();
+        Task<List<Producto>> getProducto();
+        Task<List<string>> GetProductName();
     }
 }
