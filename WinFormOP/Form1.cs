@@ -18,6 +18,7 @@ namespace WinFormOP
     {
         private List<Producto> productos = new List<Producto>();
         private List<Producto> personListProduct = new List<Producto>();
+        private List<Cliente> clientList = new List<Cliente>();
         private string endpoint = "https://localhost:44312/api/";
         public Form1()
         {
@@ -47,6 +48,10 @@ namespace WinFormOP
                 dt.Rows.Add(row);
             }
             dataGridView1.DataSource = dt;
+
+            var responseMessageclient = await client.GetAsync("cliente", HttpCompletionOption.ResponseContentRead);
+            var resultArrayclient = await responseMessageclient.Content.ReadAsStringAsync();
+            clientList = JsonConvert.DeserializeObject<List<Cliente>>(resultArrayclient);
         }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -80,10 +85,11 @@ namespace WinFormOP
         private async void button1_Click(object sender, EventArgs e)
         {
             OrdenPedido objenviar = new OrdenPedido();
+            var cliente = clientList.Where(x => x.Nombres == clienteSel.Text).FirstOrDefault();
             objenviar.Borrado = false;
-            objenviar.ClienteId = 4;
+            objenviar.ClienteId = cliente.ClienteId;
             objenviar.DireccionEntrega = textBox1.Text;
-            objenviar.PrioridadId = 7;
+            objenviar.PrioridadId = textBox3.Text=="Baja"?8:textBox3.Text=="Media"?10:11;
             objenviar.ValorTotal = Convert.ToDouble(textBox2.Text);
             foreach(var producto in this.productos)
             {
